@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Cấu hình môi trường ảo
+.venv/
+
+
+# IDE files
+.vscode/
+.idea/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Cơ sở dữ liệu
+*.sqlite3
+instance/
+
+# Static build (nếu bạn có quá trình build)
+staticfiles/
+dist/
+build/
+
+# Pytest
+htmlcov/
+.coverage
+
+# Flask
+*.db
+*.pid
+
+# Nếu dùng gunicorn hoặc uwsgi logs
+gunicorn.log

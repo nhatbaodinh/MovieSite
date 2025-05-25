@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Askbootstrap">
+      <meta name="author" content="Askbootstrap">
+      <title>VIDOE - Video Streaming Website HTML Template</title>
+      <!-- Favicon Icon -->
+      <link rel="icon" type="image/png" href="../static/img/favicon.png">
+      <!-- Bootstrap core CSS-->
+      <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom fonts for this template-->
+      <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <!-- Custom styles for this template-->
+      <link href="../static/css/osahan.css" rel="stylesheet">
+      <!-- Owl Carousel -->
+      <link rel="stylesheet" href="../static/vendor/owl-carousel/owl.carousel.css">
+      <link rel="stylesheet" href="../static/vendor/owl-carousel/owl.theme.css">
+</head>
+   <body id="page-top">
+      <!--include navbar.html-->
+      {% include 'fragments/navbar.html' %}
+
+      <div id="wrapper">
+         <!-- Sidebar -->
+         {% include 'fragments/sidebar.html' %}
+
+         <div id="content-wrapper">
+            <div class="container-fluid pb-0">
+               <div class="top-mobile-search">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <form class="mobile-search">
+                           <div class="input-group">
+                             <input type="text" placeholder="Search for..." class="form-control">
+                               <div class="input-group-append">
+                                 <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                               </div>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               <div class="top-category section-padding mb-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="main-title">
+                           <h6>Thể loại phim</h6>
+                        </div>
+                     </div>
+                     <div class="col">
+                        {% for category in categories %}
+                           <a href="#" class="btn btn-outline-secondary btn-sm mb-2 mr-2">{{ category.name }}</a>
+                        {% endfor %}
+                        <a href="#" class="btn btn-outline-primary btn-sm mb-2 mr-2">Hành động</a>
+                        <a href="#" class="btn btn-outline-primary btn-sm mb-2 mr-2">Hài hước</a>
+                        <a href="#" class="btn btn-outline-primary btn-sm mb-2 mr-2">Kinh dị</a>
+                        <a href="#" class="btn btn-outline-primary btn-sm mb-2 mr-2">Tình cảm</a>
+                        <a href="#" class="btn btn-outline-primary btn-sm mb-2 mr-2">Phiêu lưu</a>
+                        <a href="#" class="btn btn-outline-primary btn-sm mb-2 mr-2">Khoa học viễn tưởng</a>
+                        <a href="#" class="btn btn-outline-primary btn-sm mb-2 mr-2">Hoạt hình</a>
+                        <a href="#" class="btn btn-outline-primary btn-sm mb-2 mr-2">Tài liệu</a>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="main-title">
+                           <h6>Phim mới</h6>
+                        </div>
+                     </div>
+                     <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="video-card">
+                           <div class="video-card-image">
+                              <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
+                              <a href="#"><img class="img-fluid" src="../static/img/v1.png" alt=""></a>
+                              <div class="time">Thời lượng: 3:50</div>
+                           </div>
+                           <div class="video-card-body">
+                              <div class="video-title">
+                                 <a href="#">Tên phim</a>
+                              </div>
+                              <div class="video-page text-success">
+                                 Thể loại: Trinh thám
+                              </div>
+                              <div class="video-view">
+                                 <i class="fas fa-calendar-alt"></i> Ngày đăng: 11/10/2023
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+            <!-- /.container-fluid -->
+
+            <!-- Sticky Footer -->
+            {% include 'fragments/footer.html' %}
+
+         </div>
+         <!-- /.content-wrapper -->
+      </div>
+      <!-- /#wrapper -->
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+      </a>
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                  </button>
+               </div>
+               <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+               <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-primary" href="login.html">Logout</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Bootstrap core JavaScript-->
+      <script src="../static/vendor/jquery/jquery.min.js"></script>
+      <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Owl Carousel -->
+      <script src="../static/vendor/owl-carousel/owl.carousel.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="../static/js/custom.js"></script>
+   </body>
+
+</html>
