@@ -1,6 +1,5 @@
-# app/models.py
-from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy()
+from datetime import datetime
+from app.models.db import db
 
 class Movie(db.Model):
     __tablename__ = 'movies'
@@ -10,4 +9,7 @@ class Movie(db.Model):
     description = db.Column(db.Text)
     poster_url = db.Column(db.Text)
     video_url = db.Column(db.Text)
-    created_at = db.Column(db.DateTime)
+    duration = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)

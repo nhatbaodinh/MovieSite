@@ -1,6 +1,6 @@
-# app/routes.py
 from flask import Blueprint, render_template
-from .models import Movie
+from app.models.movie import Movie
+from app.models.category import Category
 
 main = Blueprint('main', __name__)
 
@@ -8,17 +8,8 @@ main = Blueprint('main', __name__)
 @main.route('/index.html')
 def index():
     movies = Movie.query.all()
-    return render_template('index.html', movies=movies)
-
-@main.route('/login')
-@main.route('/login.html')
-def login():
-    return render_template('login.html')
-
-@main.route('/register')
-@main.route('/register.html')
-def register():
-    return render_template('register.html')
+    categories = Category.query.all()
+    return render_template('index.html', movies=movies, categories=categories)
 
 @main.route('/settings')
 @main.route('/settings.html')
