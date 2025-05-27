@@ -16,7 +16,7 @@ def register():
             flash('Tên tài khoản đã tồn tại.', 'danger')
             return redirect(url_for('auth.register'))
 
-        new_user = User(username=username)
+        new_user = User(username=username, role='user')
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
@@ -24,7 +24,7 @@ def register():
         flash('Đăng ký thành công. Bạn có thể đăng nhập.', 'success')
         return redirect(url_for('auth.login'))
 
-    return render_template('register.html')
+    return render_template('auth/register.html')
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -36,14 +36,15 @@ def login():
 
         user = User.query.filter_by(username=username).first()
         if user and user.check_password(password):
-            session['user_id'] = user.id
             session['username'] = user.username
+            session['role'] = user.role
+            session['created_at'] = user.created_at.strftime('%d/%m/%Y')
             flash('Đăng nhập thành công!', 'success')
-            return redirect(url_for('main.index'))  # chuyển về trang chủ
+            return redirect(url_for('home.index'))  # chuyển về trang chủ
         else:
             flash('Tên tài khoản hoặc mật khẩu sai.', 'danger')
 
-    return render_template('login.html')
+    return render_template('auth/login.html')
 
 
 @auth.route('/logout')

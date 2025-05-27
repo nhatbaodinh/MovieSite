@@ -33,20 +33,44 @@
 
    <!-- Tài khoản -->
    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <i class="fas fa-fw fa-user"></i>
-         <span>Tài khoản</span>
-      </a>
-      <div class="dropdown-menu">
-         <a class="dropdown-item" href="../login.html">
-            <i class="fas fa-sign-in-alt mr-2"></i> Đăng nhập
+     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <i class="fas fa-fw fa-user"></i>
+       <span>Tài khoản</span>
+     </a>
+     <div class="dropdown-menu">
+       {% if session.username %}
+         <a class="dropdown-item" href="/account">
+           <i class="fas fa-user mr-2"></i> Thông tin tài khoản
          </a>
-         <a class="dropdown-item" href="../register.html">
-            <i class="fas fa-user-plus mr-2"></i> Đăng ký
+         <a class="dropdown-item" href="/logout">
+           <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
          </a>
-         <a class="dropdown-item" href="../logout">
-            <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+       {% else %}
+         <a class="dropdown-item" href="/login">
+           <i class="fas fa-sign-in-alt mr-2"></i> Đăng nhập
          </a>
-      </div>
+         <a class="dropdown-item" href="/register">
+           <i class="fas fa-user-plus mr-2"></i> Đăng ký
+         </a>
+       {% endif %}
+     </div>
    </li>
+
+  <!-- Quản lý phim (chỉ hiển thị cho admin) -->
+  {% if session.role == 'admin' %}
+  <li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <i class="fas fa-fw fa-video"></i>
+       <span>Quản lý phim</span>
+     </a>
+     <div class="dropdown-menu">
+         <a class="dropdown-item" href="/movies">
+           <i class="fas fa-film mr-2"></i> Phim
+         </a>
+         <a class="dropdown-item" href="/categories">
+           <i class="fas fa-list mr-2"></i> Thể loại
+         </a>
+     </div>
+   </li>
+  {% endif %}
 </ul>

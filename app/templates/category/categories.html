@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Askbootstrap">
+   <meta name="author" content="Askbootstrap">
+   <title>VIDOE - Video Streaming Website HTML Template</title>
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" href="../../static/img/favicon.png">
+   <!-- Bootstrap core CSS-->
+   <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Custom fonts for this template-->
+   <link href="../../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+   <!-- Custom styles for this template-->
+   <link href="../../static/css/osahan.css" rel="stylesheet">
+   <!-- Owl Carousel -->
+   <link rel="stylesheet" href="../../static/vendor/owl-carousel/owl.carousel.css">
+   <link rel="stylesheet" href="../../static/vendor/owl-carousel/owl.theme.css">
+</head>
+   <body id="page-top">
+      <!-- Navbar -->
+      {% include 'fragments/navbar.html' %}
+
+      <div id="wrapper">
+         <!-- Sidebar -->
+         {% include 'fragments/sidebar.html' %}
+
+         <div id="content-wrapper">
+            <div class="container-fluid pb-0">
+               {% with messages = get_flashed_messages(with_categories=true) %}
+                 {% if messages %}
+                   {% for category, message in messages %}
+                     <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                       {{ message }}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Đóng">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                   {% endfor %}
+                 {% endif %}
+               {% endwith %}
+
+               <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5>Danh sách thể loại</h5>
+                  <button class="btn btn-success" data-toggle="modal" data-target="#addCategoryModal">
+                     Thêm thể loại
+                  </button>
+               </div>
+              <div class="table-responsive mt-3">
+                <table class="table table-bordered table-hover">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tên thể loại</th>
+                        <th scope="col" class="text-center">Hành động</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% for category in categories %}
+                     <tr>
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td class="text-center">
+                           <a href="#" class="btn btn-sm btn-info edit-btn"
+                              data-id="{{ category.id }}"
+                              data-name="{{ category.name }}"
+                              data-toggle="modal"
+                              data-target="#editCategoryModal">
+                              Sửa
+                           </a>
+                           <a href="{{ url_for('category.delete_category', category_id=category.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
+                        </td>
+                     </tr>
+                     {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            {% include 'fragments/footer.html' %}
+         </div>
+         <!-- /.content-wrapper -->
+      </div>
+      <!-- /#wrapper -->
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+      </a>
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                  </button>
+               </div>
+               <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+               <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-primary" href="../auth/login.html">Logout</a>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Modal sửa thể loại -->
+      <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <form id="editCategoryForm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editCategoryModalLabel">Sửa thể loại</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" id="edit-category-id" name="id">
+                <div class="form-group">
+                  <label for="edit-category-name">Tên thể loại</label>
+                  <input type="text" class="form-control" id="edit-category-name" name="name" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal thêm thể loại -->
+      <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <form id="addCategoryForm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">Thêm thể loại</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="add-category-name">Tên thể loại</label>
+                  <input type="text" class="form-control" id="add-category-name" name="name" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Thêm</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Bootstrap core JavaScript-->
+      <script src="../../static/vendor/jquery/jquery.min.js"></script>
+      <script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="../../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Owl Carousel -->
+      <script src="../../static/vendor/owl-carousel/owl.carousel.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="../../static/js/custom.js"></script>
+      <script>
+      $(document).ready(function() {
+        // Điền dữ liệu vào modal khi nhấn nút sửa
+        $('.edit-btn').on('click', function () {
+          const id = $(this).data('id');
+          const name = $(this).data('name');
+
+          $('#edit-category-id').val(id);
+          $('#edit-category-name').val(name);
+        });
+
+        // Gửi dữ liệu sửa bằng AJAX
+        $('#editCategoryForm').on('submit', function (e) {
+          e.preventDefault();
+          const id = $('#edit-category-id').val();
+          const name = $('#edit-category-name').val();
+
+          $.ajax({
+            url: `/categories/${id}/edit`,
+            method: 'POST',
+            data: { name: name },
+            success: function (response) {
+              location.reload();
+            },
+            error: function (xhr) {
+              alert('Đã có tên thể loại này.');
+            }
+          });
+        });
+      });
+      </script>
+      <script>
+         $('#addCategoryForm').on('submit', function (e) {
+        e.preventDefault();
+        const name = $('#add-category-name').val();
+
+        $.ajax({
+          url: '/categories/add',
+          method: 'POST',
+          data: { name: name },
+          success: function (response) {
+            $('#addCategoryModal').modal('hide');
+            location.reload();
+          },
+          error: function (xhr) {
+            let msg = 'Có lỗi xảy ra.';
+            if (xhr.responseJSON && xhr.responseJSON.error) {
+              msg = xhr.responseJSON.error;
+            }
+            alert(msg);
+          }
+        });
+      });
+      </script>
+   </body>
+
+</html>

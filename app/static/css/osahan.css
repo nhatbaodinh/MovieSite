@@ -60,7 +60,7 @@ Version: 1.0
      margin-top: 56px;
      padding-left: 90px;
 }
-}
+
  body.fixed-nav.sidebar-toggled #content-wrapper {
      padding-left: 0;
 }
@@ -800,11 +800,12 @@ Version: 1.0
 .video-block .mb-3 {
     margin-bottom: 30px !important;
 }
- .video-card-image {
-     border-radius: 2px;
-     box-shadow: 0 0 11px #ececec;
-     overflow: hidden;
-     position: relative;
+.video-card-image {
+    position: relative;
+    width: 100%;
+    padding-top: 140%;
+    overflow: hidden;
+    border-radius: 8px;
 }
  .time {
      background: #f5234a none repeat scroll 0 0;
@@ -822,8 +823,13 @@ Version: 1.0
      opacity: unset;
 }
 .video-card-image img {
+    position: absolute;
+    top: 0; left: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
  .play-icon {
      opacity: 0;
      position: absolute;
@@ -1549,5 +1555,3 @@ Version: 1.0
         display: none;
     }
 }
-
-

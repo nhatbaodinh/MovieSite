@@ -1,3 +1,13 @@
 Flask==2.3.3
+Flask-Migrate==4.0.5
 Flask-SQLAlchemy==3.1.1
-PyMySQL==1.1.0
+SQLAlchemy==2.0.30
+Werkzeug==2.3.7
+moviepy==2.1.0
+imageio==2.37.0
+imageio-ffmpeg==0.6.0
+decorator==5.2.1
+pillow==11.2.1
+python-dotenv==1.1.0
+tqdm==4.67.1
+pymysql==1.1.1
