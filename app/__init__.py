@@ -6,7 +6,7 @@ from app.controller.routes import main
 from app.controller.home import home
 from app.controller.account import account
 from app.controller.category import category
-from app.controller.movie import movie
+from app.controller.movie import movie_bp
 
 migrate = Migrate()
 
@@ -22,7 +22,7 @@ def create_app():
     migrate.init_app(app, db)
 
     # List of blueprints to register
-    blueprints = [home, auth, account, category, movie, main]
+    blueprints = [home, auth, account, category, movie_bp, main]
 
     # Register all blueprints
     for blueprint in blueprints:

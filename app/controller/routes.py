@@ -2,11 +2,6 @@ from flask import Blueprint, render_template
 
 main = Blueprint('main', __name__)
 
-@main.route('/settings')
-@main.route('/settings.html')
-def settings():
-    return render_template('settings.html')
-
 # Các route khác theo danh sách bạn cung cấp
 @main.route('/404')
 @main.route('/404.html')

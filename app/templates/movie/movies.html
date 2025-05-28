@@ -76,14 +76,14 @@
                         <td>{{ movie.created_at.strftime('%d/%m/%Y') }}</td>
                         <td>{{ movie.category.name }}</td>
                         <td class="text-center">
-<a href="#" class="btn btn-sm btn-info edit-btn"
-   data-toggle="modal" data-target="#editMovieModal"
-   data-id="{{ movie.id }}"
-   data-title="{{ movie.title }}"
-   data-description="{{ movie.description }}"
-   data-category="{{ movie.category.id }}">
-   Sửa
-</a>
+                           <a href="#" class="btn btn-sm btn-info edit-btn"
+                              data-toggle="modal" data-target="#editMovieModal"
+                              data-id="{{ movie.id }}"
+                              data-title="{{ movie.title }}"
+                              data-description="{{ movie.description }}"
+                              data-category="{{ movie.category.id }}">
+                              Sửa
+                           </a>
                            <form action="/movies/{{ movie.id }}/delete" method="POST" style="display:inline;" onsubmit="return confirm('Bạn có chắc chắn muốn xóa phim này không?');">
                                <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
                            </form>
@@ -156,6 +156,10 @@
               {% endfor %}
             </select>
           </div>
+           <div class="form-group">
+              <label for="editPoster">Poster mới (nếu cần)</label>
+              <input type="file" class="form-control-file" id="editPoster" name="poster">
+            </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
@@ -175,20 +179,22 @@
    <script src="../../static/vendor/owl-carousel/owl.carousel.js"></script>
    <!-- Custom scripts for all pages-->
    <script src="../../static/js/custom.js"></script>
-<script>
-  $('.edit-btn').click(function () {
-    const id = $(this).data('id');
-    const title = $(this).data('title');
-    const description = $(this).data('description');
-    const categoryId = $(this).data('category');
+  <script>
+    $(document).ready(function() {
+      $('.edit-btn').on('click', function () {
+        const movieId = $(this).data('id');
+        const title = $(this).data('title');
+        const description = $(this).data('description');
+        const categoryId = $(this).data('category');
 
-    $('#editMovieId').val(id);
-    $('#editTitle').val(title);
-    $('#editDescription').val(description);
-    $('#editCategory').val(categoryId);
-    $('#editMovieForm').attr('action', `/movies/${id}/edit`);
-  });
-</script>
+        $('#editMovieForm').attr('action', `/movies/${movieId}/edit`);
+        $('#editMovieId').val(movieId);
+        $('#editTitle').val(title);
+        $('#editDescription').val(description);
+        $('#editCategory').val(categoryId);
+      });
+    });
+  </script>
 </body>
 
 </html>

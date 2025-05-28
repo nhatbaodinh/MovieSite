@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify, get_flashed_messages
+from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify, session
 from app.models.category import Category
 from app.models.db import db
 
@@ -7,11 +7,17 @@ category = Blueprint('category', __name__)
 @category.route('/categories')
 @category.route('/categories.html')
 def categories_page():
+    if session['role'] != 'admin':
+        return redirect(url_for('home.index'))
+
     categories = Category.query.all()
     return render_template('category/categories.html', categories=categories)
 
 @category.route('/categories/add', methods=['POST'])
 def add_category():
+    if session['role'] != 'admin':
+        return redirect(url_for('home.index'))
+
     name = request.form.get('name', '').strip()
 
     if not name:
@@ -30,6 +36,9 @@ def add_category():
 
 @category.route('/categories/<int:category_id>/edit', methods=['POST'])
 def edit_category(category_id):
+    if session['role'] != 'admin':
+        return redirect(url_for('home.index'))
+
     category = Category.query.get_or_404(category_id)
     name = request.form.get('name', '').strip()
 
@@ -48,6 +57,9 @@ def edit_category(category_id):
 
 @category.route('/categories/<int:category_id>/delete', methods=['POST', 'GET'])
 def delete_category(category_id):
+    if session['role'] != 'admin':
+        return redirect(url_for('home.index'))
+
     category = Category.query.get_or_404(category_id)
 
     # Nếu thể loại đang có phim thì không cho xóa

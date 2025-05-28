@@ -7,16 +7,17 @@
    &nbsp;&nbsp;
 
    <!-- Logo -->
-   <a class="navbar-brand mr-1" href="../index.html">
+   <a class="navbar-brand mr-1" href="/">
       <img class="img-fluid" alt="Logo" src="../../static/img/logo.png">
    </a>
 
    <!-- Thanh tìm kiếm -->
-   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-5 my-2 my-md-0 osahan-navbar-search">
+   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-5 my-2 my-md-0 osahan-navbar-search"
+         method="get" action="{{ url_for('movie_bp.search_movies') }}">
       <div class="input-group">
-         <input type="text" class="form-control" placeholder="Nhập tên phim">
+         <input type="text" class="form-control" name="q" placeholder="Nhập tên phim" required>
          <div class="input-group-append">
-            <button class="btn btn-light" type="button">
+            <button class="btn btn-light" type="submit">
                <i class="fas fa-search"></i>
             </button>
          </div>

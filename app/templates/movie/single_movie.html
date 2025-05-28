@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Video Streaming Website">
+   <meta name="author" content="Askbootstrap">
+   <title>VIDOE - Video Streaming Website</title>
+
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" href="../../static/img/favicon.png">
+
+   <!-- Bootstrap core CSS -->
+   <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+   <!-- Font Awesome -->
+   <link href="../../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+   <!-- Custom styles -->
+   <link href="../../static/css/osahan.css" rel="stylesheet">
+
+   <!-- Owl Carousel -->
+   <link rel="stylesheet" href="../../static/vendor/owl-carousel/owl.carousel.css">
+   <link rel="stylesheet" href="../../static/vendor/owl-carousel/owl.theme.css">
+
+   <!-- Custom improvements -->
+   <style>
+      .video-info-title {
+         font-size: 1.6rem;
+         font-weight: 600;
+         color: #343a40;
+         margin-bottom: 10px;
+      }
+      .video-meta {
+         margin-top: 15px;
+      }
+      .video-meta h6 {
+         font-weight: bold;
+         color: #555;
+         display: inline-block;
+         width: 100px;
+      }
+      .video-meta span {
+         color: #222;
+      }
+      .video-description {
+         margin-top: 10px;
+         font-size: 15px;
+         line-height: 1.6;
+      }
+      .single-video iframe {
+         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+         border-radius: 8px;
+      }
+   </style>
+</head>
+<body id="page-top">
+
+   <!-- Navbar -->
+   {% include 'fragments/navbar.html' %}
+
+   <div id="wrapper">
+      <!-- Sidebar -->
+      {% include 'fragments/sidebar.html' %}
+
+      <div id="content-wrapper">
+         <div class="container-fluid pb-0">
+            <div class="video-block section-padding">
+               <div class="row">
+                  <div class="col-md-8">
+                     <div class="single-video-left">
+                        <div class="single-video mb-3">
+                           <iframe width="100%" height="500px" src="{{ movie.video_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+
+                        <div class="single-video-info-content box mb-3 p-3 shadow-sm rounded bg-white">
+                           <h2 class="video-info-title">{{ movie.title }}</h2>
+
+                           <div class="video-meta">
+                              <p><h6>Thể loại:</h6> <span class="badge badge-primary">{{ movie.category.name }}</span></p>
+                              <p><h6>Thời lượng:</h6> <span><i class="fas fa-clock mr-1"></i>{{ movie.duration }} phút</span></p>
+                              <p><h6>Ngày đăng:</h6> <span><i class="fas fa-calendar-alt mr-1"></i>{{ movie.created_at.strftime('%d/%m/%Y') }}</span></p>
+                           </div>
+
+                           <div class="video-description mt-3">
+                              <h6>Mô tả:</h6>
+                              <p>{{ movie.description }}</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!-- Footer -->
+         {% include 'fragments/footer.html' %}
+      </div>
+      <!-- /.content-wrapper -->
+   </div>
+   <!-- /#wrapper -->
+
+   <!-- Scroll to Top Button-->
+   <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+   </a>
+
+   <!-- Logout Modal-->
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+               </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+               <a class="btn btn-primary" href="../auth/login.html">Logout</a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Scripts -->
+   <script src="../../static/vendor/jquery/jquery.min.js"></script>
+   <script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+   <script src="../../static/vendor/owl-carousel/owl.carousel.js"></script>
+   <script src="../../static/js/custom.js"></script>
+</body>
+</html>
